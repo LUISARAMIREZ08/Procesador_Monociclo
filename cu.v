@@ -12,12 +12,12 @@
 
 module cu(
     input wire clk,
-    input wire reset,
+    input wire reset
     
 );
 
     wire [31:0] IMinstruction;
-    wire [6:0] CUopcode;
+    reg [6:0] CUopcode;
     wire [31:0] ALUresult;
     wire [31:0] PCout;
     wire [31:0] SUMout;
@@ -30,16 +30,18 @@ module cu(
     wire [31:0] DMDataOut;
     wire [31:0] MUXdm_aluout;
     wire [31:0] MUXdm_alu_sumout;
-    wire [1:0] MUXdm_alu_sumop;
-    wire [31:0] CUimm;
-    wire [4:0] CUrs1;
-    wire [4:0] CUrs2;
-    wire [4:0] CUrd;
-    wire [2:0] CUfunc3;
-    wire [2:0] CUctrl;
-    wire CUrenable;
-    wire CUdenable;
-    wire CUsubsra;
+    reg [1:0] MUXdm_alu_sumop;
+    reg MUXpc_reg1op;
+    reg MUXimm_reg2op;
+    reg MUXsum_aluop;
+    reg [4:0] CUrs1;
+    reg [4:0] CUrs2;
+    reg [4:0] CUrd;
+    reg [2:0] CUfunc3;
+    reg [2:0] CUctrl;
+    reg CUrenable;
+    reg CUdenable;
+    reg CUsubsra;
 
     //Instanciación de los módulos
 
@@ -147,38 +149,25 @@ module cu(
             CUrenable = 1'b1;
             CUdenable = 1'b0;
             CUsubsra = IMinstruction[30];
+            MUXsum_aluop = 1'b0;
+            MUXpc_reg1op = 1'b1;
+            MUXimm_reg2op = 1'b0;
+            MUXdm_alu_sumop = 2'b01;
         end
 
         7'b0010011: begin          //INSTRUCCION TIPO I (OPCODE = 0010011)
             CUrs1 = IMinstruction[19:15];
             CUrd = IMinstruction[11:7];
             CUfunc3 = IMinstruction[14:12];
-            CUimm = IMinstruction[31:20];
-            CUrenable = 1'b0;
-            CUdenable = 1'b0;
-            CUsubsra = 1'b0;
-        end
-
-        7'b0000011: begin          //INSTRUCCION TIPO I load (OPCODE = 0000011)
-            CUrs1 = IMinstruction[19:15];
-            CUrd = IMinstruction[11:7];
-            CUfunc3 = IMinstruction[14:12];
-            CUimm = IMinstruction[31:20];
-            CUrenable = 1'b0;
-            CUdenable = 1'b1;
-            CUsubsra = 1'b0;
-        end
-
-        7'b0100011: begin          //INSTRUCCION TIPO S (OPCODE = 0100011)
-            CUrs1 = IMinstruction[19:15];
-            CUrs2 = IMinstruction[24:20];
-            CUfunc3 = IMinstruction[14:12];
-            CUimm = IMinstruction[31:25];
-            CUdenable = 1'b0;
             CUrenable = 1'b1;
+            CUdenable = 1'b0;
             CUsubsra = 1'b0;
+            MUXsum_aluop = 1'b0;
+            MUXpc_reg1op = 1'b1;
+            MUXimm_reg2op = 1'b1;
+            MUXdm_alu_sumop = 2'b01;
         end
-    endcase
+    endcase 
 end
 
 endmodule
