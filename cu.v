@@ -136,49 +136,49 @@ module cu(
     );
     
     //Control unit
-    always@(IMinstruction) begin
-        CUopcode = IMinstruction[6:0];
-        case(CUopcode)
-            7'b0110011: begin          //INSTRUCCION TIPO R (OPCODE = 0110011)
-                CUrs1 = IMinstruction[19:15];
-                CUrs2 = IMinstruction[24:20];
-                CUrd = IMinstruction[11:7];
-                CUfunc3 = IMinstruction[14:12];
-                CUrenable = 1'b0;
-                CUdenable = 1'b0;
-                CUsubsra = 1'b0;
-            end
+    always @(posedge clk) begin        // Cambiar a sensibilidad de flanco de subida
+    CUopcode = IMinstruction[6:0];
+    case(CUopcode)
+        7'b0110011: begin          //INSTRUCCION TIPO R (OPCODE = 0110011)
+            CUrs1 = IMinstruction[19:15];
+            CUrs2 = IMinstruction[24:20];
+            CUrd = IMinstruction[11:7];
+            CUfunc3 = IMinstruction[14:12];
+            CUrenable = 1'b1;
+            CUdenable = 1'b0;
+            CUsubsra = IMinstruction[30];
+        end
 
-            7'b0010011: begin          //INSTRUCCION TIPO I (OPCODE = 0010011)
-                CUrs1 = IMinstruction[19:15];
-                CUrd = IMinstruction[11:7];
-                CUfunc3 = IMinstruction[14:12];
-                CUimm = IMinstruction[31:20];
-                CUrenable = 1'b0;
-                CUdenable = 1'b0;
-                CUsubsra = 1'b0;
-            end
+        7'b0010011: begin          //INSTRUCCION TIPO I (OPCODE = 0010011)
+            CUrs1 = IMinstruction[19:15];
+            CUrd = IMinstruction[11:7];
+            CUfunc3 = IMinstruction[14:12];
+            CUimm = IMinstruction[31:20];
+            CUrenable = 1'b0;
+            CUdenable = 1'b0;
+            CUsubsra = 1'b0;
+        end
 
-            7'b0000011: begin          //INSTRUCCION TIPO I load (OPCODE = 0000011)
-                CUrs1 = IMinstruction[19:15];
-                CUrd = IMinstruction[11:7];
-                CUfunc3 = IMinstruction[14:12];
-                CUimm = IMinstruction[31:20];
-                CUrenable = 1'b0;
-                CUdenable = 1'b1;
-                CUsubsra = 1'b0;
-            end
+        7'b0000011: begin          //INSTRUCCION TIPO I load (OPCODE = 0000011)
+            CUrs1 = IMinstruction[19:15];
+            CUrd = IMinstruction[11:7];
+            CUfunc3 = IMinstruction[14:12];
+            CUimm = IMinstruction[31:20];
+            CUrenable = 1'b0;
+            CUdenable = 1'b1;
+            CUsubsra = 1'b0;
+        end
 
-            7'b0100011: begin          //INSTRUCCION TIPO S (OPCODE = 0100011)
-                CUrs1 = IMinstruction[19:15];
-                CUrs2 = IMinstruction[24:20];
-                CUfunc3 = IMinstruction[14:12];
-                CUimm = IMinstruction[31:25];
-                CUdenable = 1'b0;
-                CUrenable = 1'b1;
-                CUsubsra = 1'b0;
-            end
-        endcase
-    end       
+        7'b0100011: begin          //INSTRUCCION TIPO S (OPCODE = 0100011)
+            CUrs1 = IMinstruction[19:15];
+            CUrs2 = IMinstruction[24:20];
+            CUfunc3 = IMinstruction[14:12];
+            CUimm = IMinstruction[31:25];
+            CUdenable = 1'b0;
+            CUrenable = 1'b1;
+            CUsubsra = 1'b0;
+        end
+    endcase
+end
+
 endmodule
-
