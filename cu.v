@@ -144,9 +144,9 @@ module cu(
                 CUrs2 = IMinstruction[24:20];
                 CUrd = IMinstruction[11:7];
                 CUfunc3 = IMinstruction[14:12];
-                CUrenable = 1'b0;
+                CUrenable = 1'b1;
                 CUdenable = 1'b0;
-                CUsubsra = 1'b0;
+                CUsubsra = IMinstruction[30];
             end
 
             7'b0010011: begin          //INSTRUCCION TIPO I (OPCODE = 0010011)
