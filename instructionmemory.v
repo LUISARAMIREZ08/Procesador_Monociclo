@@ -1,3 +1,4 @@
+//FUNCIONA
 //HECHO POR LUISA FERNANDA RAMIREZ Y BRAYAN CATAÑO GIRALDO
 module instructionmemory(
     input [31:0] IMaddress,
