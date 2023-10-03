@@ -1,3 +1,4 @@
+//FUNCIONA
 module pc (
     input wire clk,           // Señal de reloj
     input wire reset,         // Señal de reinicio
