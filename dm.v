@@ -17,6 +17,7 @@ module DataMemory(
     if (DMWrEnable) begin // Si WrEnable está activado en flanco de bajada
       if (DMCtrl == 3'b000) begin
         DMmemory[DMAddress] <= DMDataIn[7:0]; // Almacena DataIn en la dirección especificada
+        $display("DMmemory[%d] = %d", DMAddress, DMDataIn[7:0]);
       end
       else if (DMCtrl == 3'b001) begin
         DMmemory[DMAddress] <= DMDataIn[7:0]; // Almacena DataIn en la dirección especificada

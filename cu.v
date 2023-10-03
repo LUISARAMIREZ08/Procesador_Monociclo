@@ -180,6 +180,20 @@ module cu(
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b00;
         end
+
+        7'b0100011: begin
+            CUrs1 = IMinstruction[19:15];
+            CUrs2 = IMinstruction[24:20];
+            CUrd = 5'b0;
+            CUfunc3 = IMinstruction[14:12];
+            CUrenable = 1'b0;
+            CUdenable = 1'b1;
+            CUsubsra = 1'b0;
+            MUXsum_aluop = 1'b0;
+            MUXpc_reg1op = 1'b1;
+            MUXimm_reg2op = 1'b1;
+            MUXdm_alu_sumop = 2'b00;
+        end
     endcase 
 end
 
