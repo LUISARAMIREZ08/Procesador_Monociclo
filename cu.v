@@ -28,7 +28,6 @@ module cu(
     wire [31:0] MUXpc_reg1out;
     wire [31:0] MUXimm_reg2out;
     wire [31:0] DMDataOut;
-    wire [31:0] MUXdm_aluout;
     wire [31:0] MUXdm_alu_sumout;
     reg [1:0] MUXdm_alu_sumop;
     reg MUXpc_reg1op;
@@ -80,7 +79,7 @@ module cu(
         .RFregister1(CUrs1), //Entrada del registro 1
         .RFregister2(CUrs2), //Entrada del registro 2
         .RFdestination_register(CUrd), //Entrada del registro de destino
-        .RFwrite_data(MUXdm_aluout), //Entrada de los datos a escribir del mux 4
+        .RFwrite_data(MUXdm_alu_sumout), //Entrada de los datos a escribir del mux 4
         .RFwenable(CUrenable), //Entrada de la señal de escritura
         .clk(clk), //Entrada de la señal de reloj 
         .RFdata1(RFdata1), //Salida del dato 1
