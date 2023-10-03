@@ -1,3 +1,4 @@
+//FUNCIONA
 //HECHO POR LUISA FERNANDA RAMIREZ Y BRAYAN CATAÑO GIRALDO
 module alu(
   input [31:0] ALUoperand1, // 32-bit value 1
@@ -11,7 +12,7 @@ module alu(
   begin
   case (ALUfunc3)
     3'b000: 
-      if(ALUsubsra)
+      if(!ALUsubsra)
         ALUresult = ALUoperand1 + ALUoperand2;		//Suma
       else 
       	ALUresult = ALUoperand1 - ALUoperand2;		//Resta
