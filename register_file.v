@@ -13,11 +13,15 @@ module register_file(
   reg [31:0] RFregisters [31:0];
   reg [4:0] i;
   
+  initial begin
+        $readmemb("registers.txt", RFregisters);
+    end
+
   always @(negedge clk) begin
     if (RFwenable) begin
       if (RFdestination_register > 5'b00000) begin
       	RFregisters[RFdestination_register] <= RFwrite_data;
-        // $display("Registro[%d] actualizado con valor %b", RFdestination_register, RFwrite_data);
+        $display("Registro[%d] actualizado con valor %b", RFdestination_register, RFwrite_data);
       end
     end
   end
@@ -26,7 +30,6 @@ module register_file(
   //   for (i = 0; i < 32; i = i + 1) begin
   //     $display("Registro[%d] = %b", i, RFregisters[i]);
   //   end
-  //   $display("/n /n /n");
   // end
   
   assign RFdata1 = RFregisters[RFregister1];
