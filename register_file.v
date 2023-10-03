@@ -9,8 +9,14 @@ module register_file(
   output [31:0] RFdata1,
   output [31:0] RFdata2
 );
+
   reg [31:0] RFregisters [31:0];
+  reg [4:0] i;
   
+  initial begin
+        $readmemb("registers.txt", RFregisters);
+    end
+
   always @(negedge clk) begin
     if (RFwenable) begin
       if (RFdestination_register > 5'b00000) begin
@@ -19,6 +25,12 @@ module register_file(
       end
     end
   end
+
+  // always @(*) begin
+  //   for (i = 0; i < 32; i = i + 1) begin
+  //     $display("Registro[%d] = %b", i, RFregisters[i]);
+  //   end
+  // end
   
   assign RFdata1 = RFregisters[RFregister1];
   assign RFdata2 = RFregisters[RFregister2];
