@@ -28,7 +28,6 @@ module cu(
     wire [31:0] MUXpc_reg1out;
     wire [31:0] MUXimm_reg2out;
     wire [31:0] DMDataOut;
-    wire [31:0] MUXdm_aluout;
     wire [31:0] MUXdm_alu_sumout;
     reg [1:0] MUXdm_alu_sumop;
     reg MUXpc_reg1op;
@@ -38,7 +37,6 @@ module cu(
     reg [4:0] CUrs2;
     reg [4:0] CUrd;
     reg [2:0] CUfunc3;
-    reg [2:0] CUctrl;
     reg CUrenable;
     reg CUdenable;
     reg CUsubsra;
@@ -80,7 +78,7 @@ module cu(
         .RFregister1(CUrs1), //Entrada del registro 1
         .RFregister2(CUrs2), //Entrada del registro 2
         .RFdestination_register(CUrd), //Entrada del registro de destino
-        .RFwrite_data(MUXdm_aluout), //Entrada de los datos a escribir del mux 4
+        .RFwrite_data(MUXdm_alu_sumout), //Entrada de los datos a escribir del mux 4
         .RFwenable(CUrenable), //Entrada de la señal de escritura
         .clk(clk), //Entrada de la señal de reloj 
         .RFdata1(RFdata1), //Salida del dato 1
@@ -122,7 +120,7 @@ module cu(
     DataMemory dm(
         .DMAddress(ALUresult), //Entrada de la dirección de memoria
         .DMDataIn(RFdata2), //Entrada de los datos a escribir
-        .DMCtrl(CUctrl), //Entrada de la señal de control de la DM
+        .DMCtrl(CUfunc3), //Entrada de la señal de control de la DM
         .DMWrEnable(CUdenable), //Entrada de la señal de escritura habilitada
         .DMDataOut(DMDataOut), //Salida de los datos leídos
         .clk(clk) //Entrada de la señal de reloj
@@ -157,6 +155,7 @@ module cu(
 
         7'b0010011: begin          //INSTRUCCION TIPO I (OPCODE = 0010011)
             CUrs1 = IMinstruction[19:15];
+            CUrs2 = 32'b0;
             CUrd = IMinstruction[11:7];
             CUfunc3 = IMinstruction[14:12];
             CUrenable = 1'b1;
@@ -166,6 +165,34 @@ module cu(
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b01;
+        end
+
+        7'b0000011: begin          //INSTRUCCION TIPO I (OPCODE = 0000011)
+            CUrs1 = IMinstruction[19:15];
+            CUrs2 = 32'b0;
+            CUrd = IMinstruction[11:7];
+            CUfunc3 = IMinstruction[14:12];
+            CUrenable = 1'b1;
+            CUdenable = 1'b0;
+            CUsubsra = 1'b0;
+            MUXsum_aluop = 1'b0;
+            MUXpc_reg1op = 1'b1;
+            MUXimm_reg2op = 1'b1;
+            MUXdm_alu_sumop = 2'b00;
+        end
+
+        7'b0100011: begin
+            CUrs1 = IMinstruction[19:15];
+            CUrs2 = IMinstruction[24:20];
+            CUrd = 5'b0;
+            CUfunc3 = IMinstruction[14:12];
+            CUrenable = 1'b0;
+            CUdenable = 1'b1;
+            CUsubsra = 1'b0;
+            MUXsum_aluop = 1'b0;
+            MUXpc_reg1op = 1'b1;
+            MUXimm_reg2op = 1'b1;
+            MUXdm_alu_sumop = 2'b00;
         end
     endcase 
 end

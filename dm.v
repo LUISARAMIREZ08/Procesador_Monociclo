@@ -9,10 +9,15 @@ module DataMemory(
 
   reg [7:0] DMmemory [0:4095]; // Memoria de datos de 8 bits y 4096 palabras
 
+  initial begin
+        $readmemb("dm.txt", DMmemory);
+    end
+
   always @(posedge clk) begin //En flanco de subida se escribirá en la memoria
     if (DMWrEnable) begin // Si WrEnable está activado en flanco de bajada
       if (DMCtrl == 3'b000) begin
         DMmemory[DMAddress] <= DMDataIn[7:0]; // Almacena DataIn en la dirección especificada
+        $display("DMmemory[%d] = %d", DMAddress, DMDataIn[7:0]);
       end
       else if (DMCtrl == 3'b001) begin
         DMmemory[DMAddress] <= DMDataIn[7:0]; // Almacena DataIn en la dirección especificada
