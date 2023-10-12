@@ -1,7 +1,7 @@
 module Branch(
+    input  [4:0] BRopcode,
     input  [31:0] BRregister1,
     input  [31:0] BRregister2,
-    input  [4:0] BRopcode,
     output reg branch_next
 );
 
