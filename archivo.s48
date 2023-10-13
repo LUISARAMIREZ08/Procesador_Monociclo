@@ -1,7 +1,7 @@
-addi x1, x0, 10
-addi x2, x0, 5
-addi x3, x0, 4
-add x4, x1, x2
-sb x1, 0(x3)
-lb x5, 0(x3)
+    addi x1, x0, 1      # Cargar 1 en t0 (inicializar el contador)
+    addi x2,x0, 10      # Cargar 10 en t1 (límite superior)
+    addi x3,x0, 0       # Inicializar el acumulador
+    add x3, x3, x1 # Sumar t0 a t2 (acumulador)
+    addi x1, x1, 1 # Incrementar t0 en 1
+    bne x1, x2, loop  # Saltar a "loop" si t0 no es igual a t1
 
