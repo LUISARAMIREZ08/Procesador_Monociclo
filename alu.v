@@ -15,6 +15,7 @@ module alu(
       if(!ALUsubsra)
         ALUresult = ALUoperand1 + ALUoperand2;		//Suma
       else 
+      
       	ALUresult = ALUoperand1 - ALUoperand2;		//Resta
     3'b100: ALUresult = ALUoperand1 ^ ALUoperand2;	//XOR
     3'b110: ALUresult = ALUoperand1 | ALUoperand2;	//OR

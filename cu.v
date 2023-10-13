@@ -9,6 +9,7 @@
 `include "pc.v"
 `include "register_file.v"
 `include "sum.v"
+`include "Branch.v"
 
 module cu(
     input wire clk,
@@ -29,6 +30,8 @@ module cu(
     wire [31:0] MUXimm_reg2out;
     wire [31:0] DMDataOut;
     wire [31:0] MUXdm_alu_sumout;
+    wire branch_next;
+
     reg [1:0] MUXdm_alu_sumop;
     reg MUXpc_reg1op;
     reg MUXimm_reg2op;
@@ -37,6 +40,7 @@ module cu(
     reg [4:0] CUrs2;
     reg [4:0] CUrd;
     reg [2:0] CUfunc3;
+    reg [4:0] BRopcode;
     reg CUrenable;
     reg CUdenable;
     reg CUsubsra;
@@ -107,6 +111,13 @@ module cu(
         .MUXimm_reg2out(MUXimm_reg2out) //Salida del MUX 3
     );
 
+    //BRANCH
+    Branch branch(
+        .BRregister1(RFdata1), //Entrada del dato 1 del RegisterFile
+        .BRregister2(RFdata2), //Entrada del dato 2 del RegisterFile
+        .BRopcode(BRopcode), //Entrada del opcode
+        .branch_next(branch_next) //Salida de la señal de salto
+    );  
     //ALU
     alu alu(
         .ALUoperand1(MUXpc_reg1out), //Entrada del operando 1 del MUX 2
@@ -181,7 +192,7 @@ module cu(
             MUXdm_alu_sumop = 2'b00;
         end
 
-        7'b0100011: begin
+        7'b0100011: begin       //INSTRUCCION TIPO S (OPCODE = 0100011)
             CUrs1 = IMinstruction[19:15];
             CUrs2 = IMinstruction[24:20];
             CUrd = 5'b0;
