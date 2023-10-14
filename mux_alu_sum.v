@@ -1,13 +1,13 @@
 module mux_alu_sum(
     input [31:0] MUXsum,
     input [31:0] MUX1alu,
-    input branch_next,
+    input branch,
     output reg [31:0] MUXsum_aluout
     );
 
-    always @(MUXsum, MUX1alu, branch_next)
+    always @(MUXsum, MUX1alu, branch)
     begin
-        if (branch_next == 1) begin
+        if (branch == 1) begin
             MUXsum_aluout = MUXsum;
         end
         else begin

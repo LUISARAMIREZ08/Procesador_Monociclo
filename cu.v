@@ -51,7 +51,7 @@ module cu(
     mux_alu_sum mux1(
         .MUX1alu(ALUresult), //Entrada del resultado de la ALU
         .MUXsum(SUMout), //Entrada del contador de programa
-        .branch_next(branch_next), //Entrada de señal de control del mux 1 que indica si se debe saltar o no
+        .branch(branch_next), //Entrada de señal de control del mux 1 que indica si se debe saltar o no
         .MUXsum_aluout(MUXsum_aluout) //Salida del MUX 1
     );
 
