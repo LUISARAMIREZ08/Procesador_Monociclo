@@ -23,6 +23,7 @@ module alu(
     3'b101: ALUresult = ALUoperand1 >> ALUoperand2;	//Desplazamiento a la derecha
     3'b001: ALUresult = ALUoperand1 << ALUoperand2;	//Desplazamiento a la izquierda
     3'b010: ALUresult = ALUoperand1 < ALUoperand2;	//Menor qué
+    3'b011: ALUresult = ALUoperand2;
   endcase
 end
 endmodule

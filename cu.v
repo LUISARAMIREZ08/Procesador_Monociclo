@@ -35,7 +35,6 @@ module cu(
     reg [1:0] MUXdm_alu_sumop;
     reg MUXpc_reg1op;
     reg MUXimm_reg2op;
-    reg MUXsum_aluop;
     reg [4:0] CUrs1;
     reg [4:0] CUrs2;
     reg [4:0] CUrd;
@@ -158,7 +157,6 @@ module cu(
             CUrenable = 1'b1;
             CUdenable = 1'b0;
             CUsubsra = IMinstruction[30];
-            MUXsum_aluop = 1'b0;
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b0;
             MUXdm_alu_sumop = 2'b01;
@@ -172,7 +170,6 @@ module cu(
             CUrenable = 1'b1;
             CUdenable = 1'b0;
             CUsubsra = 1'b0;
-            MUXsum_aluop = 1'b0;
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b01;
@@ -186,7 +183,6 @@ module cu(
             CUrenable = 1'b1;
             CUdenable = 1'b0;
             CUsubsra = 1'b0;
-            MUXsum_aluop = 1'b0;
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b00;
@@ -200,13 +196,12 @@ module cu(
             CUrenable = 1'b0;
             CUdenable = 1'b1;
             CUsubsra = 1'b0;
-            MUXsum_aluop = 1'b0;
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b00;
         end
 
-        7'b1100011: begin       //INSTRUCCION TIPO SB (OPCODE = 1100011)
+        /* 7'b1100011: begin       //INSTRUCCION TIPO SB (OPCODE = 1100011)
             CUrs1 = IMinstruction[19:15];
             CUrs2 = IMinstruction[24:20];
             CUrd = 5'b0;
@@ -214,13 +209,43 @@ module cu(
             CUrenable = 1'b0;
             CUdenable = 1'b0;
             CUsubsra = 1'b0;
-            MUXsum_aluop = 1'b1;
-            MUXpc_reg1op = 1'b1;
+            MUXpc_reg1op = 1'b0;
             MUXimm_reg2op = 1'b1;
-            MUXdm_alu_sumop = 2'b00;
+            MUXdm_alu_sumop = 2'b01;
             BRopcode = IMinstruction[14:12];
-            
-        end 
+        end  */
+
+        7'b1100011: begin       //INSTRUCCION TIPO SB (OPCODE = 1100011)
+            CUrs1 = IMinstruction[19:15];
+            CUrs2 = IMinstruction[24:20];
+            CUrd = 5'b0;
+            CUrenable = 1'b0;
+            CUdenable = 1'b0;
+            CUsubsra = 1'b0;
+            MUXpc_reg1op = 1'b0;
+            MUXimm_reg2op = 1'b1;
+            MUXdm_alu_sumop = 2'b01;
+            case(CUfunc3)
+                3'b000: begin
+                    BRopcode = 5'b00000;
+                end
+                3'b001: begin
+                    BRopcode = 5'b00001;
+                end
+                3'b100: begin
+                    BRopcode = 5'b00100;
+                end
+                3'b101: begin
+                    BRopcode = 5'b00101;
+                end
+                3'b110: begin
+                    BRopcode = 5'b00110;
+                end
+                3'b111: begin
+                    BRopcode = 5'b00111;
+                end
+            endcase
+        end
     endcase 
 end
 
