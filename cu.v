@@ -67,7 +67,7 @@ module cu(
         .SUMdatain(PCout), //Entrada del contador de programa
         .SUMout(SUMout), //Salida de la suma
         .clk(clk), //Entrada de la señal de reloj
-        .reset(reset) //Entrada de la señal de reinicio
+        .reset(reset) //Entrada de la señal de reinicio 
     );
 
     //Instruction memory
