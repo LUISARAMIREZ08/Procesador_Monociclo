@@ -7,7 +7,7 @@ module mux_alu_sum(
 
     always @(MUXsum, MUX1alu, branch)
     begin
-        if (branch == 1) begin
+        if (branch == 0) begin
             MUXsum_aluout = MUXsum;
         end
         else begin

@@ -1,4 +1,4 @@
-/* //HECHO POR LUISA FERNANDA RAMIREZ Y BRAYAN CATAÑO GIRALDO
+//HECHO POR LUISA FERNANDA RAMIREZ Y BRAYAN CATAÑO GIRALDO
 module register_file(
   input [4:0] RFregister1,
   input [4:0] RFregister2,
@@ -35,32 +35,4 @@ module register_file(
   assign RFdata1 = RFregisters[RFregister1];
   assign RFdata2 = RFregisters[RFregister2];
   
-endmodule
- */
-module register_file(
-  input [4:0] RFregister1,
-  input [4:0] RFregister2,
-  input [4:0] RFdestination_register,
-  input [31:0] RFwrite_data,
-  input RFwenable,
-  input clk,
-  output [31:0] RFdata1,
-  output [31:0] RFdata2
-);
-  
-  logic [31:0] RFregisters [31:0];
-  
-  initial begin
-    $readmemb("registers.txt", RFregisters);
-  end
-  
-  
-  assign RFdata1 = RFregisters[RFregister1];
-  assign RFdata2 = RFregisters[RFregister2];
-  
-  always @(posedge clk) begin
-    if (RFwenable == 1 && RFdestination_register != 0)
-      RFregisters[RFdestination_register] <= RFwrite_data;
-      $display("Registro[%d] actualizado con valor %d", RFdestination_register, RFwrite_data);
-  end 
 endmodule
