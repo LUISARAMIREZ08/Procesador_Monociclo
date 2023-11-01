@@ -1,14 +1,8 @@
 beq x0, x0, main
-
-sum:
 addi x1, x0, 10
 addi x2, x0, 20
 add x3, x2, x1
 beq x0, x0, fin
-
-main:
 beq x0, x0, sum
-
-fin:
 addi x4, x0, 10
 add x0, x0, x0
