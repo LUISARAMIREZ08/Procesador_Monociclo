@@ -1,8 +1,13 @@
 beq x0, x0, main
-addi x1, x0, 10
-addi x2, x0, 20
-add x3, x2, x1
+
+resta:
+sub x3, x2, x1
 beq x0, x0, fin
-beq x0, x0, sum
-addi x4, x0, 10
+
+main:
+addi x1, x0, 10
+addi x2, x0, 50
+beq x0, x0, resta
+
+fin:
 add x0, x0, x0
