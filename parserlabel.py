@@ -30,10 +30,7 @@ class parserlabel(Parser):
         label_name = p.LABEL
         # Guarda el nombre de la etiqueta en el diccionario y el número de línea actual + 4
         global label_dict
-        if count_line == 0:
-            label_dict[label_name] = count_line
-        else:
-            label_dict[label_name] = count_line + 4
+        label_dict[label_name] = count_line
     
     @_('INS_TYPE_R REGISTER COMMA REGISTER COMMA REGISTER')
     def line(self, p):

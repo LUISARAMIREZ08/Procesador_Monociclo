@@ -235,6 +235,6 @@ if __name__ == '__main__':
     print(f"Instrucciones guardadas en {output_file_path}")
 
     # Imprime el diccionario de etiquetas
-    # print("Diccionario de Etiquetas:")
-    # for label, line_number in dict_label.items():
-    #     print(f"{label}: {line_number}")
+    print("Diccionario de Etiquetas:")
+    for label, line_number in dict_label.items():
+        print(f"{label}: {line_number}")
