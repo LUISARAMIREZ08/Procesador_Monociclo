@@ -160,6 +160,7 @@ module cu(
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b0;
             MUXdm_alu_sumop = 2'b01;
+            BRopcode = 5'b11111;
         end
 
         7'b0010011: begin          //INSTRUCCION TIPO I (OPCODE = 0010011)
@@ -173,6 +174,7 @@ module cu(
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b01;
+            BRopcode = 5'b11111;
         end
 
         7'b0000011: begin          //INSTRUCCION TIPO I (OPCODE = 0000011)
@@ -186,6 +188,7 @@ module cu(
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b00;
+            BRopcode = 5'b11111;
         end
 
         7'b0100011: begin       //INSTRUCCION TIPO S (OPCODE = 0100011)
@@ -199,6 +202,7 @@ module cu(
             MUXpc_reg1op = 1'b1;
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b00;
+            BRopcode = 5'b11111;
         end
 
         7'b1100011: begin       //INSTRUCCION TIPO SB (OPCODE = 1100011)

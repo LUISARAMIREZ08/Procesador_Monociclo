@@ -1,4 +1,3 @@
-prim:
 beq x0, x0, main
 
 sum:

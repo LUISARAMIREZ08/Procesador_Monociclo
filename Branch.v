@@ -31,6 +31,8 @@ module Branch(
             if (BRregister1 >= BRregister2) begin
                 branch_next = 1;
             end
+        5'b11111:
+            branch_next = 0;
         default:
             branch_next = 0;
         endcase
