@@ -33,7 +33,7 @@ module cu_tb;
     // Aplica patrones de entrada aquí (por ejemplo, cambios en las señales de control)
     
     // Simula durante un período de tiempo
-    #100; // Ajusta según la duración de la simulación que deseas
+    #160; // Ajusta según la duración de la simulación que deseas
     $finish; // Finaliza la simulación
   end
 
