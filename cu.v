@@ -217,26 +217,31 @@ module cu(
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b01;
             BRopcode = IMinstruction[14:12];
-            case (CUfunc3)
-                3'b000: begin
-                    BRopcode = 5'b00000;
-                end
-                3'b001: begin
-                    BRopcode = 5'b00001;
-                end
-                3'b100: begin
-                    BRopcode = 5'b00100;
-                end
-                3'b101: begin
-                    BRopcode = 5'b00101;
-                end
-                3'b110: begin
-                    BRopcode = 5'b00110;
-                end
-                3'b111: begin
-                    BRopcode = 5'b00111;
-                end
-            endcase
+            // case (CUfunc3)
+            //     3'b000: begin
+            //         BRopcode = 5'b00000;
+            //     end
+            //     3'b001: begin
+            //         BRopcode = 5'b00001;
+            //     end
+            //     3'b100: begin
+            //         BRopcode = 5'b00100;
+            //     end
+            //     3'b101: begin
+            //         BRopcode = 5'b00101;
+            //     end
+            //     3'b110: begin
+            //         BRopcode = 5'b00110;
+            //     end
+            //     3'b111: begin
+            //         BRopcode = 5'b00111;
+            //     end
+            // endcase
+        end
+
+        7'b0000000: begin
+            CUrenable = 1'b0;
+            CUdenable = 1'b0;
         end
     endcase 
 end
