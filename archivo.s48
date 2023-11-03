@@ -1,0 +1,12 @@
+    addi a1, zero, 0   # Inicializa a1 con 0 (será la dirección base de la memoria de datos)
+    addi a2, zero, 5   # Número de elementos a sumar
+    addi a3, zero, 0   # Inicializa a3 como el acumulador de la suma
+    lw a0, 0(a1)     # Carga un valor de la memoria de datos en a0
+    add a3, a3, a0  # Suma el valor de a0 al acumulador a3
+    addi a1, a1, 4   # Incrementa la dirección en 4 bytes (siguiente elemento en la memoria)
+    addi a2, a2, -1  # Decrementa el contador de elementos
+    bnez a2, loop    # Salta de vuelta a 'loop' si a2 no es cero
+    beq x0, x0, end
+    # A partir de este punto, a3 contiene la suma de los elementos en la memoria de datos
+    # Terminar el programa
+    addi x5, x0, 6
