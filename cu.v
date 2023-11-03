@@ -237,6 +237,7 @@ module cu(
                     BRopcode = 5'b00111;
                 end
             endcase
+            end
         7'b1101111: begin       //INSTRUCCION TIPO UJ (OPCODE = 1101111)
             CUrs1 = 5'b0;
             CUrs2 = 5'b0;
@@ -249,7 +250,7 @@ module cu(
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b01;
             BRopcode = 5'b11111;
-        end
+
         end
     endcase 
 end
