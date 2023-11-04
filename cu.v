@@ -217,7 +217,7 @@ module cu(
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b01;
             BRopcode = IMinstruction[14:12];
-            case (CUfunc3)
+            /* case (CUfunc3)
                 3'b000: begin
                     BRopcode = 5'b00000;
                 end
@@ -236,8 +236,8 @@ module cu(
                 3'b111: begin
                     BRopcode = 5'b00111;
                 end
-            endcase
-            end
+            endcase*/
+            end 
         7'b1101111: begin       //INSTRUCCION TIPO UJ (OPCODE = 1101111)
             CUrs1 = 5'b0;
             CUrs2 = 5'b0;
@@ -250,7 +250,10 @@ module cu(
             MUXimm_reg2op = 1'b1;
             MUXdm_alu_sumop = 2'b01;
             BRopcode = 5'b11111;
-
+        end
+        7'b0000000: begin
+            CUrenable = 1'b0;
+            CUdenable = 1'b0;
         end
     endcase 
 end

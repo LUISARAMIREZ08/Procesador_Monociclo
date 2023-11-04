@@ -13,7 +13,7 @@ module DataMemory(
         $readmemb("dm.txt", DMmemory);
     end
 
-  always @(posedge clk) begin //En flanco de subida se escribirá en la memoria
+  always @(*) begin //En flanco de subida se escribirá en la memoria
     if (DMWrEnable) begin // Si WrEnable está activado en flanco de bajada
       if (DMCtrl == 3'b000) begin
         DMmemory[DMAddress] <= DMDataIn[7:0]; // Almacena DataIn en la dirección especificada
@@ -32,7 +32,7 @@ module DataMemory(
     end
   end
 
-  always @(negedge clk) begin //En flanco de bajada se leerá de la memoria
+  always @(*) begin //En flanco de bajada se leerá de la memoria
     if (DMCtrl == 3'b000) begin
       DMDataOut <= {{24{DMmemory[DMAddress][7]}}, DMmemory[DMAddress]}; 
     end
