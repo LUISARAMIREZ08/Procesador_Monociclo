@@ -9,25 +9,27 @@ module DataMemory(
 
   reg [7:0] DMmemory [0:4095]; // Memoria de datos de 8 bits y 4096 palabras
 
-  initial begin
-        $readmemb("dm.txt", DMmemory);
-    end
+  // initial begin
+  //       $readmemb("dm.txt", DMmemory);
+  //   end
 
   always @(*) begin //En flanco de subida se escribirá en la memoria
     if (DMWrEnable) begin // Si WrEnable está activado en flanco de bajada
       if (DMCtrl == 3'b000) begin
         DMmemory[DMAddress] <= DMDataIn[7:0]; // Almacena DataIn en la dirección especificada
-        $display("DMmemory[%d] = %d", DMAddress, DMDataIn[7:0]);
+        // $display("DMmemory[%d] = %b", DMAddress, DMDataIn[7:0]);
       end
       else if (DMCtrl == 3'b001) begin
         DMmemory[DMAddress] <= DMDataIn[7:0]; // Almacena DataIn en la dirección especificada
         DMmemory[DMAddress+1] <= DMDataIn[15:8]; // Almacena DataIn en la dirección especificada + 1
+        // $display("DMmemory[%d] = %b", DMAddress, DMDataIn[7:0]);
       end
       else if (DMCtrl == 3'b010) begin
         DMmemory[DMAddress] <= DMDataIn[7:0]; // Almacena DataIn en la dirección especificada
         DMmemory[DMAddress+1] <= DMDataIn[15:8]; // Almacena DataIn en la dirección especificada + 1
         DMmemory[DMAddress+2] <= DMDataIn[23:16]; // Almacena DataIn en la dirección especificada + 2
         DMmemory[DMAddress+3] <= DMDataIn[31:24]; // Almacena DataIn en la dirección especificada + 3
+        // $display("DMmemory[%d] = %b", DMAddress, DMDataIn[7:0]);
       end
     end
   end
