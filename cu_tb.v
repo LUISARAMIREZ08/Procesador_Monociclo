@@ -36,7 +36,5 @@ module cu_tb;
     #160; // Ajusta según la duración de la simulación que deseas
     $finish; // Finaliza la simulación
   end
-
-
-
+  
 endmodule
