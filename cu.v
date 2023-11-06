@@ -165,7 +165,7 @@ module cu(
 
         7'b0010011: begin          //INSTRUCCION TIPO I (OPCODE = 0010011)
             CUrs1 = IMinstruction[19:15];
-            CUrs2 = 32'b0;
+            CUrs2 = 5'b0;
             CUrd = IMinstruction[11:7];
             CUfunc3 = IMinstruction[14:12];
             CUrenable = 1'b1;
@@ -179,7 +179,7 @@ module cu(
 
         7'b0000011: begin          //INSTRUCCION TIPO I (OPCODE = 0000011)
             CUrs1 = IMinstruction[19:15];
-            CUrs2 = 32'b0;
+            CUrs2 = 5'b0;
             CUrd = IMinstruction[11:7];
             CUfunc3 = IMinstruction[14:12];
             CUrenable = 1'b1;
@@ -237,6 +237,34 @@ module cu(
             //         BRopcode = 5'b00111;
             //     end
             // endcase
+        end
+
+        7'b1100111: begin      //INSTRUCCION TIPO I (OPCODE = 1100111)
+            CUrs1 = IMinstruction[19:15];
+            CUrs2 = 5'b0;
+            CUrd = IMinstruction[11:7];
+            CUfunc3 = IMinstruction[14:12];
+            CUrenable = 1'b1;
+            CUdenable = 1'b0;
+            CUsubsra = 1'b0;
+            MUXpc_reg1op = 1'b1;
+            MUXimm_reg2op = 1'b1;
+            MUXdm_alu_sumop = 2'b10;
+            BRopcode = 5'b01111;
+        end
+
+        7'b1101111: begin      //INSTRUCCION TIPO J (OPCODE = 1101111)
+            CUrs1 = 5'b0;
+            CUrs2 = 5'b0;
+            CUrd = IMinstruction[11:7];
+            CUfunc3 = 3'b0;
+            CUrenable = 1'b1;
+            CUdenable = 1'b0;
+            CUsubsra = 1'b0;
+            MUXpc_reg1op = 1'b0;
+            MUXimm_reg2op = 1'b1;
+            MUXdm_alu_sumop = 2'b10;
+            BRopcode = 5'b01111;
         end
 
         7'b0000000: begin
