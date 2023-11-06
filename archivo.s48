@@ -1,11 +1,24 @@
 jal x0, main
 
+resta:
+sub x10, x8, x1
+sub x11, x7, x2
+jalr x9
+
 sum:
-add x4, x2, x3
-jalr x1
+add x7, x5, x4
+add x8, x3, x2
+jal x9, resta
+jalr x6
 
 main:
-addi x2, x0, 1000
-addi x3, x0, 1500
-jal x1, sum
+addi x1, x0, 1
+addi x2, x0, 2
+addi x3, x0, 3
+addi x4, x0, 4
 addi x5, x0, 5
+jal x6, sum
+jal x0, fin
+
+fin:
+add x12, x11, x10
