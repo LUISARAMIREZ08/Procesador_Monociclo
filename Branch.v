@@ -11,27 +11,54 @@ module Branch(
             if (BRregister1 == BRregister2) begin
                 branch_next = 1;
             end
+            else begin
+                branch_next = 0;
+            end
         5'b00001: 
             if (BRregister1 != BRregister2) begin
                 branch_next = 1;
+            end
+            else begin
+                branch_next = 0;
             end
         5'b00100:
             if (BRregister1 < BRregister2) begin
                 branch_next = 1;
             end
+            else begin
+                branch_next = 0;
+            end
         5'b00101:
             if (BRregister1 >= BRregister2) begin
                 branch_next = 1;
+            end
+            else begin
+                branch_next = 0;
             end
         5'b00110:
             if (BRregister1 < BRregister2) begin
                 branch_next = 1;
             end
+            else begin
+                branch_next = 0;
+            end
         5'b00111:
             if (BRregister1 >= BRregister2) begin
                 branch_next = 1;
             end
-        default:
+            else begin
+                branch_next = 0;
+            end
+        5'b11111:
+            branch_next = 0;
+            
+        5'b01111:
+            branch_next = 1;
+
+        5'b10111:
+            branch_next = 1;
+
+        5'b10101:
             branch_next = 0;
         endcase
     end
