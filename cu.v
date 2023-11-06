@@ -277,6 +277,19 @@ module cu(
             MUXdm_alu_sumop = 2'b01;
             BRopcode = 5'b11111;
         end
+        7'b0010111: begin       //INSTRUCCION TIPO U AUIPC (OPCODE = 0010111)
+            CUrs1 = 5'b0;
+            CUrs2 = 5'b0;
+            CUrd = IMinstruction[11:7];
+            CUfunc3 = 3'b0;    
+            CUrenable = 1'b1;
+            CUdenable = 1'b0;
+            CUsubsra = 1'b0;
+            MUXpc_reg1op = 1'b0;
+            MUXimm_reg2op = 1'b1;
+            MUXdm_alu_sumop = 2'b01;
+            BRopcode = 5'b11111;
+        end
 
         7'b0000000: begin
             CUrenable = 1'b0;
