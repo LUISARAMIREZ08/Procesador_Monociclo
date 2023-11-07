@@ -3,7 +3,7 @@ module register_file(
   input [4:0] RFr1,
   input [4:0] RFr2,
   input [4:0] RFrd,
-  input [31:0] RFwrite_data,
+  input [31:0] RFwr,
   input RFwenable,
   input clk,
   output [31:0] RFdata1,
@@ -20,8 +20,8 @@ module register_file(
   always @(negedge clk) begin
     if (RFwenable) begin
       if (RFrd > 5'b00000) begin
-      	RFregisters[RFrd] <= RFwrite_data;
-        $display("Registro[%d] actualizado con valor %d", RFrd, RFwrite_data);
+      	RFregisters[RFrd] <= RFwr;
+        $display("Registro[%d] actualizado con valor %d", RFrd, RFwr);
       end
     end
   end

@@ -1,15 +1,15 @@
 module mux_reg2_imm(
-    input [31:0] MUXreg2,
-    input [31:0] MUXimm,
-    input MUXimm_reg2op,
-    output reg [31:0] MUXimm_reg2out
+    input [31:0] MUX3reg2,
+    input [31:0] MUX3imm,
+    input MUX3control,
+    output reg [31:0] MUX3out
     );
 
-    always @(MUXreg2, MUXimm, MUXimm_reg2op)
+    always @(MUX3reg2, MUX3imm, MUX3control)
     begin
-        case(MUXimm_reg2op)
-            0: MUXimm_reg2out = MUXreg2;
-            1: MUXimm_reg2out = MUXimm;
+        case(MUX3control)
+            0: MUX3out = MUX3reg2;
+            1: MUX3out = MUX3imm;
         endcase
     end
 endmodule

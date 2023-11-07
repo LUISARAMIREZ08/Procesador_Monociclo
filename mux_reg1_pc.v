@@ -1,15 +1,15 @@
 module mux_reg1_pc(
-    input [31:0] MUXpc,
-    input [31:0] MUXreg1,
-    input MUXpc_reg1op,
-    output reg [31:0] MUXpc_reg1out
+    input [31:0] MUX2pc,
+    input [31:0] MUX2reg1,
+    input MUX2control,
+    output reg [31:0] MUX2out
     );
 
-    always @(MUXpc, MUXreg1, MUXpc_reg1op)
+    always @(MUX2pc, MUX2reg1, MUX2control)
     begin
-        case(MUXpc_reg1op)
-            0: MUXpc_reg1out = MUXpc;
-            1: MUXpc_reg1out = MUXreg1;
+        case(MUX2control)
+            0: MUX2out = MUX2pc;
+            1: MUX2out = MUX2reg1;
         endcase
     end
 endmodule
