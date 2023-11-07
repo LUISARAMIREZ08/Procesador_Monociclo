@@ -78,9 +78,9 @@ module cu(
 
     //Register file
     register_file rf(
-        .RFregister1(CUrs1), //Entrada del registro 1
-        .RFregister2(CUrs2), //Entrada del registro 2
-        .RFdestination_register(CUrd), //Entrada del registro de destino
+        .RFr1(CUrs1), //Entrada del registro 1
+        .RFr2(CUrs2), //Entrada del registro 2
+        .RFrd(CUrd), //Entrada del registro de destino
         .RFwrite_data(MUXdm_alu_sumout), //Entrada de los datos a escribir del mux 4
         .RFwenable(CUrenable), //Entrada de la señal de escritura
         .clk(clk), //Entrada de la señal de reloj 
