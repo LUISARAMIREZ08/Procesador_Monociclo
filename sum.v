@@ -18,8 +18,6 @@ end
 
 endmodule */
 module sum (
-    input wire clk,          // Señal de reloj
-    input wire reset, 
     input wire [31:0] SUMdatain, // Entrada de datos desde el ProgramCounter
     output reg [31:0] SUMout // Salida de la suma
 );

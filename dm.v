@@ -1,5 +1,4 @@
 module DataMemory(
-  input wire clk,          // Reloj
   input wire [31:0] DMAddress, // Dirección de memoria de 32 bits
   input wire [31:0] DMDataIn, // Datos de escritura de 32 bits
   input wire [2:0] DMCtrl, // Señal de control de la DM (000: Un byte (8 bits), 001: Dos bytes, media palabra (16 bits), 010: Cuatro bytes, palabra (32 bits), 100: Un byte unsigned (8 bits), 101: Dos bytes unsigned, media palabra (16 bits)
