@@ -296,9 +296,9 @@ module cu(
             CUrenable = 1'b1;
             CUdenable = 1'b0;
             CUsubsra = 1'b0;
-            MUXpc_reg1op = 1'b1;
-            MUXimm_reg2op = 1'b1;
-            MUXdm_alu_sumop = 2'b10;
+            MUX2control = 1'b1;
+            MUX3control = 1'b1;
+            MUX4control = 2'b10;
             BRopcode = 5'b01111;
         end
 
@@ -310,9 +310,9 @@ module cu(
             CUrenable = 1'b1;
             CUdenable = 1'b0;
             CUsubsra = 1'b0;
-            MUXpc_reg1op = 1'b0;
-            MUXimm_reg2op = 1'b1;
-            MUXdm_alu_sumop = 2'b10;
+            MUX2control = 1'b0;
+            MUX3control = 1'b1;
+            MUX4control = 2'b10;
             BRopcode = 5'b01111;
         end
 

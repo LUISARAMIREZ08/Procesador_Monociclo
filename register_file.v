@@ -21,19 +21,22 @@ module register_file(
     if (RFwenable) begin
       if (RFrd > 5'b00000) begin
       	RFregisters[RFrd] <= RFwr;
-        $display("----------------------------------------");
-        $display("Registro[%d] actualizado con valor %d", RFrd, RFwr);
-        $display("----------------------------------------");
+        $display("------------------------------------------------------------------");
+        // $display("Registro[%d] actualizado con valor %d", RFrd, RFwr);
+        for (i = 0; i < 32; i = i + 1) begin
+          $display("R[%d] = %d", i, RFregisters[i]);
+        end
+        $display("------------------------------------------------------------------");
       end
     end
   end
 
-  always @(posedge clk) begin
-    for (i = 0; i < 32; i = i + 1) begin
-      $display("R[%d] = %d", i, RFregisters[i]);
-    end
-    $display("----------------------------------------");
-  end
+  // always @(posedge clk) begin
+  //   for (i = 0; i < 32; i = i + 1) begin
+  //     $display("R[%d] = %d", i, RFregisters[i]);
+  //   end
+  //   $display("----------------------------------------");
+  // end
   
   assign RFdata1 = RFregisters[RFr1];
   assign RFdata2 = RFregisters[RFr2];

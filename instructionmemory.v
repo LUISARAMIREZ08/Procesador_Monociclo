@@ -12,5 +12,8 @@ module instructionmemory(
 
     always @(IMaddress) begin
         IMinstruction <= IMmemoria[{2'b00, IMaddress[31:2]}];
+        $display("------------------------------------------------------------------");
+        $display("Instrucción: %b", IMinstruction);
+        $display("------------------------------------------------------------------");
     end
 endmodule
