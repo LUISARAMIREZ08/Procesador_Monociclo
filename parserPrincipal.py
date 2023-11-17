@@ -22,6 +22,13 @@ def numbits(offset, bits):
         num = int(num, 2) + 1
         return format(num, f'0{bits}b')
 
+def num_binary(numero, bits):
+    if numero >= 0:
+        binary = bin(numero)[2:].zfill(bits)
+    else:
+        binary = bin(2**bits + numero)[2:]
+    return binary
+
 class RISCVParser(Parser):
 
     # Importa los tokens definidos en tu lexer
@@ -75,7 +82,8 @@ class RISCVParser(Parser):
         funct3 = ins_info['funct3']
         rd = Registros(p.REGISTER0)
         rs1 = Registros(p.REGISTER1)
-        imm = format(int(p.INTEGER), '012b')  
+        #imm = format(int(p.INTEGER), '012b')  
+        imm = num_binary(int(p.INTEGER), 12)
         binary_instruction = f"{imm}{rs1}{funct3}{rd}{opcode}"
         global count_line
         count_line = count_line + 4
@@ -88,7 +96,8 @@ class RISCVParser(Parser):
         funct3 = ins_info['funct3']
         rd = Registros(p.REGISTER0)
         rs1 = Registros(p.REGISTER1)
-        imm = format(int(p.INTEGER), '012b')  
+        #imm = format(int(p.INTEGER), '012b')  
+        imm = num_binary(int(p.INTEGER), 12)
         binary_instruction = f"{imm}{rs1}{funct3}{rd}{opcode}"
         global count_line
         count_line = count_line + 4
@@ -101,7 +110,8 @@ class RISCVParser(Parser):
         funct3 = ins_info['funct3']
         rs1 = Registros(p.REGISTER1)
         rs2 = Registros(p.REGISTER0)
-        imm = format(int(p.INTEGER), '012b')  
+        #imm = format(int(p.INTEGER), '012b')  
+        imm = num_binary(int(p.INTEGER), 12)
         imm1 = imm[7:]
         imm2 = imm[:7]
         binary_instruction = f"{imm2}{rs2}{rs1}{funct3}{imm1}{opcode}"
@@ -114,7 +124,8 @@ class RISCVParser(Parser):
         ins_info = ins_type_U[p.INS_TYPE_U]
         opcode = ins_info['opcode']
         rd = Registros(p.REGISTER)
-        imm = format(int(p.INTEGER), '020b')  
+        #imm = format(int(p.INTEGER), '020b')  
+        imm = num_binary(int(p.INTEGER), 20)
         binary_instruction = f"{imm}{rd}{opcode}"
         global count_line
         count_line = count_line + 4
